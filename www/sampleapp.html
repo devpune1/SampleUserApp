@@ -1,0 +1,110 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    
+        <script src="../sample/js/DataTable/jquery.js"></script>
+        <link rel="stylesheet" href="../node_modules/onsenui/css/onsenui.css"/>
+        <link rel="stylesheet" href="../node_modules/onsenui/css/onsen-css-components.css"/>
+        <link rel="stylesheet" href="../sample/css/sampleapp.css"/>
+        <link rel="stylesheet" href="../node_modules/onsenui/css/onsen-css-components-blue-basic-theme.css">
+     <link rel="stylesheet" type="text/css" href="../sample/js/DataTable/jquery.dataTables.min.css">
+   <link rel="stylesheet" type="text/css" href="../sample/js/DataTable/dataTables.jqueryui.css">
+    
+    
+ <script type="text/javascript" src="../sample/js/DataTable/jquery.dataTables.min.js"></script>
+
+  
+    
+
+       
+        
+        <script src="../node_modules/onsenui/js/onsenui.js"></script>
+    
+        <script src="../sample/js/database/ydndbsql.js"></script>
+   
+    
+        <script src="../sample/js/database/dbConnection.js"></script>
+  
+        <script src="../sample/js/encryption/sjcl.js"></script>
+        <script type="text/javascript" src="../sample/js/encryption/aes.js"></script>
+        <script src="../sample/js/encryption/encrypt.js"></script>
+        <script src="../sample/js/encryption/sha256.js"></script>
+        <script src="../sample/js/database/save.js"></script>
+        <!--
+        <script src="../sample/js/remotestorage/remotestorage.js"></script>
+            
+        <script src="../sample/js/remotestorage/remoteStore.js"></script>
+        <script src="../sample/js/remotestorage/remoteConfig.js"></script>
+        -->
+        <script src="../sample/js/mainmodule/mainmodule.js"></script>
+       
+          <script src="../sample/js/menu.js"></script>
+       <script src="../sample/js/bind.js"></script>
+        
+     
+  
+  
+  </head>
+    
+
+
+  <body >
+  
+  <ons-navigator id ="myNavigator" page= "login.html"></ons-navigator>
+   
+
+
+
+
+<ons-template id="login.html">
+  
+  <ons-page id="login">
+    
+    <ons-toolbar>
+      
+      <div class="center">Login Page</div>
+      
+    </ons-toolbar>
+
+
+
+    <div align="center" class ="loginform" top = "200px">
+     
+        <span> <ons-input class="logininput" modifier="underbar" type="text" placeholder="User Name" ></ons-input></span><br>
+      
+         <span><ons-input class="logininput" modifier="underbar" type="password" placeholder="User Password" > </ons-input></span>
+      
+          <p><ons-button  id="login"  >Sign-In</ons-button>
+ 
+          <ons-button id="register">Sign-Up</ons-button></p> 
+      
+      
+      
+    </div>
+    
+    <!---
+    <ons-popover modifier="material"    id="popover" class="popup" style=" margin-top:-20px;"  cancelable>
+ <p id = "errorpage" style="text-align: center; opacity: 0.5; color:red" ></p>
+ 
+</ons-popover>
+    -->
+    
+   <ons-template id="popover.html" >
+  <ons-popover direction="down"modifier="material"  id="popover" style="text-align: center; color:red" cancelable>
+   <p id="errorpage"></p>
+  </ons-popover>
+</ons-template> 
+    
+    
+    
+  </ons-page>
+  
+</ons-template>
+
+ 
+  
+ 
+  </body>
+</html>

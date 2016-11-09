@@ -1,0 +1,55 @@
+
+
+
+
+ <ons-page id="register">
+
+   <ons-toolbar>
+     <div class="left">
+       <ons-toolbar-button onclick="fn.open()">
+         <ons-icon icon="md-menu"></ons-icon>
+       </ons-toolbar-button>
+     </div>
+     <div class="center">
+       Main
+     </div>
+   </ons-toolbar>
+   <div align="center" top = "200px">
+
+         <p><ons-input  class="userinput" modifier="underbar" type="text" placeholder="User Name" ></ons-input></p>
+
+         <p><ons-input  class="userinput" modifier="underbar" type="text" placeholder="User  Password" > </ons-input></p>
+
+         <p><ons-input class="userinput" modifier="underbar" type="text" placeholder="User website" ></ons-input></p>
+
+         <p><ons-input  class="userinput" modifier="underbar" type="text" placeholder="User Hint" ></ons-input></p>
+
+
+
+
+    <p>
+
+      <ons-button modifier="normal"  id="save"  onclick = "userRecord()">Save</ons-button>
+      <ons-button modifier="normal"  id="clear"  onclick = "clearDb()">Clear</ons-button>
+     <ons-button modifier="normal" id="close">Cancel</ons-button></p>
+
+    <table id="example" class="display" width="100%">
+     <tbody id="tbodyid">
+   <thead>
+           <tr>
+
+
+           </tr>
+       </thead>
+       <tbody>
+      </table>
+
+   </div>
+
+ <ons-template id="popover.html" >
+ <ons-popover direction="down"modifier="material"  id="errpopover" style="text-align: center; color:red" cancelable>
+ <p id="anotherpage"></p>
+ </ons-popover>
+
+ </ons-template>
+  </ons-page>

@@ -1,0 +1,38 @@
+.logininput{
+    margin-top: 20px;
+    width: 350px;
+    
+    
+}
+
+.registerinput{
+    
+     margin-top: 20px;
+    width: 350px;
+    
+}
+
+#radio-1{
+    
+   min :0px;
+  max:200px;
+    
+    
+    
+}
+
+#remotestorage-widget {
+   
+   top    : auto !important;
+    right  : 15px !important;
+    bottom : 300px !important;
+
+  
+     
+   
+}
+
+ .remotestorage-state-connected {
+        bottom: 300px !important;
+    }
+  
