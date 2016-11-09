@@ -98,7 +98,7 @@ db.executeSql('Select * from record').then(function(records){
 
 
 
-   name = records[items].name;
+   name = records[items].userId;
    name =JSON.parse(name);
 
    name = name.adata;
@@ -113,7 +113,7 @@ if(name.length){
        if(validateCredential( userName ,name,userPassword)){
 
 
-            sessionStorage.setItem("randomID",userPassword);
+            sessionStorage.setItem("randomID",generateHashKey(userPassword));
 
        document.querySelector('#myNavigator').pushPage('mainmodule.html', {data: {title: 'Main Application'}});
 

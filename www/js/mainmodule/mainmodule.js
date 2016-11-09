@@ -747,3 +747,11 @@ function clearDb(){
 
 });
 }
+
+
+function closeApp(){
+
+
+
+
+}

@@ -110,7 +110,7 @@ return x ;
 
  function getRegistrationInputId(){
 
-var userRegistrationID = ["name","mobile","email","date","password",];
+var userRegistrationID = ["name","userId","mobile","email","date","password"];
 
 return userRegistrationID;
  }

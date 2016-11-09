@@ -29,7 +29,7 @@ function saveRecords(){
     var userObject = "";
     var dbObject = getConnectionObject('records');
     var userArray = ""
-       var text = ["Name","Mobile","Email","Date","Password","Confirm"];
+       var text = ["User Name",'User ID',"User Mobile No.","User Email Address","Birth Date"," User Password","User Confirm Password"];
 
     if(checkUserTextBox("registerinput",text)){
 
@@ -41,20 +41,34 @@ function saveRecords(){
     userObject = createUserDataObject(userData,userData[4],userArray);
 
 
+if(userData[5] === userData[6]){
 
 
 
 
 
+          dbObject.put( 'record',userObject).done( function() {
 
-     dbObject.put( 'record',userObject).done(function(){
-
-        console.log("entered ");
+          console.log("entered ");
 
      });
 
-    clearInputs("registerinput");
+          clearInputs("registerinput");
     }
+
+
+
+else {
+
+            callErrorPopOver("registerinput",6,"Password Do not Match")
+
+
+      }
+
+
+
+
+  }
     else{
 
 
@@ -114,16 +128,8 @@ function checkUserTextBox(textBoxID,text){
 
         if(object[items].value ==""){
 
+            callErrorPopOver(textBoxID,items,text[items]+"Cannot Be Empty" );
 
-            ons.createPopover('popover.html').then(function(popover) {
-
-                  document.getElementById('anotherpage').style.color="red";
-                 document.getElementById('anotherpage').innerHTML = text[items]+" "+"Cannot Be Empty" ;
-                console.log(popover)
-              document.getElementById('errpopover').show(document.getElementsByClassName(textBoxID)[items]);
-
-
-            });
            flag = 0;
            break;
 
@@ -158,5 +164,18 @@ function checkUserTextBox(textBoxID,text){
 
 
 
+
+}
+function callErrorPopOver(textBoxID,items,text){
+
+  ons.createPopover('popover.html').then(function(popover) {
+
+        document.getElementById('anotherpage').style.color="red";
+       document.getElementById('anotherpage').innerHTML = text+" ";
+      console.log(popover)
+    document.getElementById('errpopover').show(document.getElementsByClassName(textBoxID)[items]);
+
+
+  });
 
 }
