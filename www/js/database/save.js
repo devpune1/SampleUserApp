@@ -29,7 +29,7 @@ function saveRecords(){
     var userObject = "";
     var dbObject = getConnectionObject('records');
     var userArray = ""
-       var text = ["Name","Mobile","Email","Date","Password"];
+       var text = ["Name","Mobile","Email","Date","Password","Confirm"];
 
     if(checkUserTextBox("registerinput",text)){
 

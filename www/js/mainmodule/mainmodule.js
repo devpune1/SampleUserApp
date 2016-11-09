@@ -28,7 +28,12 @@ function getUserData(className){
 
 }
 
+function getInputId(){
 
+var userID = ["name","password","website","hint"]
+
+return userID;
+}
 
 
 function userRecord(){
@@ -39,6 +44,7 @@ function userRecord(){
    var userKey ="";
     var userArray = "";
      var decrypted = "";
+
     userData = getUserData("userinput");
 
     userKey = sessionStorage.getItem('randomID');
@@ -143,7 +149,7 @@ function reloadTable(){
   var dataSource = [];
 
 
-   var userArray = ['userinfo','website','hint'];
+   var userArray = ['userinfo','website','hint','date'];
 
   var db = getConnectionObject("records");
 
@@ -255,14 +261,13 @@ function displaySortedData(dataSource){
                         { title: 'Name',  className: "center", },
                         {title: 'Password' ,  className: "center",},
                         { title: 'Website',  className: "center", },
-                        {title: 'Hint',
-                          className: "center",},{
-
-
-                          title : 'Action',
+                        {title: 'Hint',className: "center",},
+                          {
+                            title : 'Action',
                           default :-1,
-                             className: "center",
-                "defaultContent": " <input type= 'button' value = 'Delete' class = 'deleteButton' > </input>"
+                        className: "center",
+
+                    "defaultContent": " <input type= 'button' value = 'Delete' class = 'deleteButton' > </input>"
 
 
                         }
@@ -680,10 +685,10 @@ console.log(userData);
 
         if(validateSensitiveData(userArray[items])){
 
-          encryptedData =  decryptData(userData[userArray[items]],userKey);
+          encryptedData = decryptToPlainData(userData[userArray[items]],userKey);
 
               encryptedObj = (encryptedData);
-console.log(encryptedObj);
+                console.log(encryptedObj);
 
 
 
