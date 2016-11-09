@@ -253,7 +253,7 @@ function displaySortedData(dataSource){
     $(document).ready(function() {
 
     $('#example').DataTable( {
-        responsive: true,
+        'responsive': true,
         "bJQueryUI": true,
          "destroy": true,
         data: dataSource,
@@ -262,15 +262,14 @@ function displaySortedData(dataSource){
                         {title: 'Password' ,  className: "center",},
                         { title: 'Website',  className: "center", },
                         {title: 'Hint',className: "center",},
-                          {
-                            title : 'Action',
+                          {title : 'Action',
                           default :-1,
                         className: "center",
 
                     "defaultContent": " <input type= 'button' value = 'Delete' class = 'deleteButton' > </input>"
 
 
-                        }
+                  },
                 ]
     });
 
@@ -282,14 +281,11 @@ function displaySortedData(dataSource){
 
      var dataSelected = table.row( $(this).parents('tr') ).data();
 
-     deleteData(dataSelected[0],dataSelected[1],dataSelected[2],dataSelected[3],"sam");
+    // deleteData(dataSelected[0],dataSelected[1],dataSelected[2],dataSelected[3],"sam");
 
 
 
-     table
-        .row( $(this).parents('tr') )
-        .remove()
-        .draw();
+     table.row( $(this).parents('tr') ).remove().draw();
 
 
 

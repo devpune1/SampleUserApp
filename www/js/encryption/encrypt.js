@@ -114,3 +114,27 @@ var userRegistrationID = ["name","mobile","email","date","password",];
 
 return userRegistrationID;
  }
+ function createUserDataObject(userData,userKey,userArray){
+
+     var userDataObject = {};
+     var userObjectKey = userArray;
+     var userObjectValue = userData;
+
+
+
+
+      for (var items = 0; items < userObjectKey .length; items++) {
+
+          // userDataObject[userObjectKey[items]] = (userObjectValue[items],userKey);
+      userDataObject[userObjectKey[items]] = encryptData(userObjectValue[items],userKey);
+     }
+
+
+     console.log(userDataObject);
+
+     return userDataObject;
+
+
+
+
+ }
