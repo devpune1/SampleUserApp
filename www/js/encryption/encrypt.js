@@ -63,7 +63,7 @@ function decryptData(userData,userKey){
 
 
 
-return  decryptedData;
+return  JSON.parse(decryptedData);
 
 
 }

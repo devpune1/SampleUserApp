@@ -20,7 +20,7 @@ for(var id in transactions){
 
 
 
-     removeDuplicate(transactions[id]);
+     //removeDuplicate(transactions[id]);
 
 
   }

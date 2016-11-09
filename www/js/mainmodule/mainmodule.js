@@ -51,6 +51,8 @@ function userRecord(){
     userObject = createDataObject(userData,userArray);
 
    userObject = createSensitiveEncryptedObject(userObject,userArray,userKey);
+
+   console.log( JSON.parse( sjcl.decrypt(userKey,userObject.userinfo) ) );
   //dbObject.clear('userData');
 
      dbObject.put('userData',userObject).done(function(){
@@ -667,7 +669,7 @@ function createEncryptedObject(encryptedData,userData,userArray){
 
   var encryptedObj ={};
     var encryptedData ={};
-    var items =0;
+    var items = 0;
 
 console.log(userData);
      console.log(userData+"Array "+userArray+"Key "+userKey);
@@ -676,13 +678,12 @@ console.log(userData);
 
 
 
-        if(validateSensitiveData(userArray[items]))
-        {
+        if(validateSensitiveData(userArray[items])){
 
-          encryptedData =  sjcl.decrypt(userKey,userData[userArray[items]]);
+          encryptedData =  decryptData(userData[userArray[items]],userKey);
 
-              encryptedObj = JSON.parse(encryptedData);
-
+              encryptedObj = (encryptedData);
+console.log(encryptedObj);
 
 
 
