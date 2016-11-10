@@ -18,13 +18,9 @@ document.addEventListener('init', function(event) {
 
     };
 
-
-
-
-
   }
 
-  else
+  else{
 
 
     if (page.id === 'register') {
@@ -32,7 +28,7 @@ document.addEventListener('init', function(event) {
     page.querySelector('ons-toolbar .center').innerHTML = page.data.title;
   }
 
-
+}
 });
 
 

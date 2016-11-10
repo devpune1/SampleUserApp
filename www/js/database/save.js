@@ -128,7 +128,7 @@ function checkUserTextBox(textBoxID,text){
 
         if(object[items].value ==""){
 
-            callErrorPopOver(textBoxID,items,text[items]+"Cannot Be Empty" );
+            callErrorPopOver(textBoxID,items,text[items]+" Cannot Be Empty" );
 
            flag = 0;
            break;
