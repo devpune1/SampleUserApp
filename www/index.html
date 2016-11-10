@@ -38,7 +38,7 @@
         <script src="/js/remotestorage/remoteStore.js"></script>
         <script src="/js/remotestorage/remoteConfig.js"></script>
         -->
-         <script type="text/javascript"  src="../user/www/js/verify.notify.min.js"></script>
+         <script type="text/javascript"  src="../js/verify.notify.min.js"></script>
         <script src="/js/mainmodule/mainmodule.js"></script>
 
           <script src="../js/menu.js"></script>
@@ -73,7 +73,9 @@
 
     <div align="center" class ="loginform" top = "200px">
 
-        <span> <ons-input class="logininput" modifier="underbar" type="text" placeholder="User Name" ></ons-input></span><br>
+
+
+        <span> <ons-input class="logininput" modifier="underbar" type="text" placeholder="User Name" pattern='[0-9]{4}'></ons-input></span><br>
 
          <span><ons-input class="logininput" modifier="underbar" type="password" placeholder="User Password" > </ons-input></span>
 

@@ -95,7 +95,9 @@ db.executeSql('Select * from record').then(function(records){
 
 
    name = records[items].userId;
-   name =JSON.parse(name);
+
+   console.log(name);
+  name =JSON.parse(name);
 
    name = name.adata;
 

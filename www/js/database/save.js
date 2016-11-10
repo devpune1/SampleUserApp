@@ -31,7 +31,7 @@ function saveRecords(){
     var userArray = ""
        var text = ["User Name",'User ID',"User Mobile No.","User Email Address","Birth Date"," User Password","User Confirm Password"];
 
-    if(checkUserTextBox("registerinput",text)){
+    if( checkUserTextBox("registerinput",text)){
 
 
     userData = getData("registerinput");
