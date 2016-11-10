@@ -179,3 +179,14 @@ function callErrorPopOver(textBoxID,items,text){
   });
 
 }
+
+
+
+
+
+function validateString(){
+
+  
+
+
+}
