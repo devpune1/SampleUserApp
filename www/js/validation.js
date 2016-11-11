@@ -1,12 +1,16 @@
-$(function() {
+
+
+ $(document).ready(function() {
 
    // Setup form validation on the #register-form element
-   $("#register-form").validate({
+   $("#regform").validate({
 
        // Specify the validation rules
        rules: {
-           name: "required",
+           fname: "required",
+
           userid: "required",
+
            email: {
                required: true,
                email: true
@@ -17,7 +21,7 @@ $(function() {
            },
            password: {
                required: true,
-               minlength: 5
+               maxlength:2
            },
            mobile: {
                required: true,
@@ -25,13 +29,14 @@ $(function() {
            },
           confirmpassword: {
                required: true,
-               minlength: 5
+               maxlength:2
            },
        },
 
        // Specify the validation error messages
        messages: {
-           name: "Please enter your first name",
+
+           fname: "Please enter your first name",
            userid: "Please enter your last name",
           mobile: {
                required: "Please provide a password",
@@ -49,13 +54,10 @@ $(function() {
            userDate: "Please proper date",
        },
 
-       submitHandler: function(form) {
-           form.submit();
-       }
 
 
 
 
-   });
+   })
 
- });
+});

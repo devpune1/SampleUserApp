@@ -210,6 +210,7 @@ catch(err) {
         if( object[items].value == "" ){
 
             ons.createPopover('popover.html').then(function(popover) {
+              
                   document.getElementById('errorpage').style.color ='red'
                  document.getElementById('errorpage').innerHTML = text[items]+" "+"Cannot Be Empty" ;
                 console.log(popover)

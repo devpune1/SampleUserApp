@@ -4,13 +4,13 @@
 function getData(className){
 
      var elements = document.getElementsByClassName(className);
-  var userData = [];
+     var userData = [];
 
   for (var items = 0; items < elements.length; items++) {
 
     if (typeof elements[items].value !== "undefined") {
 
-        userData.push(elements[items].value);
+          userData.push(elements[items].value);
       }
     }
 
@@ -23,13 +23,20 @@ function getData(className){
 
 
 
-function saveRecords(){
+function saveRecords() {
 
     var userData ="";
     var userObject = "";
     var dbObject = getConnectionObject('records');
     var userArray = ""
-       var text = ["User Name",'User ID',"User Mobile No.","User Email Address","Birth Date"," User Password","User Confirm Password"];
+    var text = ["User Name",'User ID',"User Mobile No.","User Email Address","Birth Date"," User Password","User Confirm Password"];
+
+
+    $("#regform").valid();
+
+
+
+
 
     if( checkUserTextBox("registerinput",text)){
 
@@ -41,13 +48,10 @@ function saveRecords(){
     userObject = createUserDataObject(userData,userData[4],userArray);
 
 
-if(userData[5] === userData[6]){
+if(userData[5] === userData[6]) {
 
 
-
-
-
-          dbObject.put( 'record',userObject).done( function() {
+          dbObject.put('record',userObject).done( function() {
 
           console.log("entered ");
 
@@ -55,8 +59,6 @@ if(userData[5] === userData[6]){
 
           clearInputs("registerinput");
     }
-
-
 
 else {
 
@@ -69,13 +71,6 @@ else {
 
 
   }
-    else{
-
-
-
-
-
-    }
 
 
 }
@@ -83,14 +78,11 @@ else {
 
 
 
-function clearInputs(className){
+function clearInputs(className) {
 
       var elements = document.getElementsByClassName(className);
 
-
-
-  for (var items = 0; items < elements.length; items++) {
-
+      for (var items = 0; items < elements.length; items++) {
 
        elements[items].value ="";
 
@@ -105,7 +97,7 @@ function clearInputs(className){
 }
 
 
-function getTableName(){
+function getTableName() {
 
     var table ="record";
 
@@ -126,19 +118,18 @@ function checkUserTextBox(textBoxID,text){
 
 
 
-        if(object[items].value ==""){
+      if(object[items].value ==""){
 
-            callErrorPopOver(textBoxID,items,text[items]+" Cannot Be Empty" );
+            callErrorPopOver( textBoxID,items,text[items] +" Cannot Be Empty" );
 
-           flag = 0;
-           break;
+            flag = 0;
+
+            break;
 
         }
-        else{
+   else {
 
-            flag++;
-
-
+                flag++;
 
         }
 
@@ -146,17 +137,17 @@ function checkUserTextBox(textBoxID,text){
 
     }
 
-  if(flag){
+  if(flag) {
 
 
       return true;
 
 
   }
-  else{
+  else {
 
 
-      return false;
+        return false;
   }
 
 
@@ -166,27 +157,19 @@ function checkUserTextBox(textBoxID,text){
 
 
 }
-function callErrorPopOver(textBoxID,items,text){
+
+
+
+function callErrorPopOver(textBoxID,items,text) {
 
   ons.createPopover('popover.html').then(function(popover) {
 
         document.getElementById('anotherpage').style.color="red";
-       document.getElementById('anotherpage').innerHTML = text+" ";
-      console.log(popover)
-    document.getElementById('errpopover').show(document.getElementsByClassName(textBoxID)[items]);
+        document.getElementById('anotherpage').innerHTML = text+" ";
+        console.log(popover);
+        document.getElementById('errpopover').show(document.getElementsByClassName(textBoxID)[items]);
 
 
   });
-
-}
-
-
-
-
-
-function validateString(){
-
-  
-
 
 }
