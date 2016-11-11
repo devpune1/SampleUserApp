@@ -1,12 +1,11 @@
-<!doctype html>
+
 
 <html lang="en">
   <head>
     <meta charset="utf-8">
 
         <script src="../js/DataTable/jquery.js"></script>
-        <script src="../www/parsley.min.js"></script>
-
+    
         <link rel="stylesheet" href="../lib/onsenui/css/onsenui.css"/>
         <link rel="stylesheet" href="../lib/onsenui/css/onsen-css-components.css"/>
         <link rel="stylesheet" href="..//css/sampleapp.css"/>
@@ -43,7 +42,7 @@
 
 
         <script src="/js/mainmodule/mainmodule.js"></script>
-        <script src="../js/validation.js"></script>
+
           <script src="../js/menu.js"></script>
        <script src="../js/bind.js"></script>
 
@@ -56,7 +55,7 @@
 
   <body >
 
-  <ons-navigator id ="myNavigator" page= "login.html> </ons-navigator>
+  <ons-navigator id ="myNavigator" page= 'login.html' > </ons-navigator>
 
 
 
@@ -76,16 +75,16 @@
 
     <div align="center" class ="loginform" top = "200px">
 
+<form class="userform"  data-parsley-validate>
 
+        <span> <ons-input class="logininput" modifier="underbar" id = "userid" type="text" placeholder="User Id" pattern='[0-9]{4}'></ons-input></span><br>
 
-        <span> <ons-input class="logininput" modifier="underbar" type="text" placeholder="User Name" pattern='[0-9]{4}'></ons-input></span><br>
-
-         <span><ons-input class="logininput" modifier="underbar" type="password" placeholder="User Password" > </ons-input></span>
+         <span><ons-input class="logininput" modifier="underbar" id = "password" type="password" placeholder="User Password" > </ons-input></span>
 
           <p><ons-button  id="login"  >Sign-In</ons-button>
 
           <ons-button id="register">Sign-Up</ons-button></p>
-
+</form>
 
 
     </div>

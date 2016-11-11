@@ -9,7 +9,14 @@ document.addEventListener('init', function(event) {
 
     page.querySelector('#register').onclick = function() {
 
+  
+
       document.querySelector('#myNavigator').pushPage('registration.html', {data: {title: 'Register'}});
+
+
+
+
+
     };
 
      page.querySelector('#login').onclick = function() {
@@ -210,7 +217,7 @@ catch(err) {
         if( object[items].value == "" ){
 
             ons.createPopover('popover.html').then(function(popover) {
-              
+
                   document.getElementById('errorpage').style.color ='red'
                  document.getElementById('errorpage').innerHTML = text[items]+" "+"Cannot Be Empty" ;
                 console.log(popover)
