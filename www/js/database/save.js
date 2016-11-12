@@ -1,6 +1,24 @@
-
-
-
+$().ready(function() {
+    // validate the form when it is submitted
+     $("#testingform").validate();
+     $("#userName").rules("add", {
+         required:true,
+         messages: {
+                required: "Please Enter Title of Project."
+         }
+      });
+     $("#userID").rules("add", {
+         required:true,
+         messages: {
+                required: "Please Enter Description of Project."
+         }
+      });
+     /*  You Can add oter fields like above
+         Here with messages. But remember you have to mention
+         $("#testingform").validate(); first and then write
+         all other code
+     */
+});
 
 
 function getData(className){
@@ -36,10 +54,10 @@ function saveRecords() {
 
 
 
+document.getElementById(userName).setCustomValidity("You're having too much fun!");
 
 
-
-
+/*
     if( checkUserTextBox("registerinput",text)){
 
 
@@ -73,7 +91,7 @@ else {
 
 
   }
-
+*/
 
 }
 

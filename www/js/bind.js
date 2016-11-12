@@ -32,7 +32,7 @@ document.addEventListener('init', function(event) {
 
     if (page.id === 'register') {
 
-    page.querySelector('ons-toolbar .center').innerHTML = page.data.title;
+  //  page.querySelector('ons-toolbar .center').innerHTML = page.data.title;
   }
 
 }
