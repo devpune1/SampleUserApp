@@ -9,7 +9,7 @@ document.addEventListener('init', function(event) {
 
     page.querySelector('#register').onclick = function() {
 
-  
+
 
       document.querySelector('#myNavigator').pushPage('registration.html', {data: {title: 'Register'}});
 
@@ -64,7 +64,7 @@ var    userData = "";
 
 var name ="";
 
-  var text= ["User Name ","User Password"];
+  var text= ["User ID ","User Password"];
 
 
 
