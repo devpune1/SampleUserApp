@@ -11,20 +11,31 @@
     </ons-toolbar>
 
 <div align="center" top = "200px">
-<form class="testingforms" data-parsley-validate="" >
-<p><ons-input id="userName" class="registerinput " modifier="underbar" type="text" placeholder="User Name"  required=""></ons-input></p>
 
-<p><ons-input id="userID" class="registerinput " modifier="underbar" type="text" placeholder="User ID" required></ons-input></p>
+<form id="testingforms" data-parsley-validate="" >
 
-<p><ons-input  name="userMobile" class="registerinput " modifier="underbar" type="text" placeholder="User Mobile Number" required> </ons-input></p>
+<p><ons-input id="userName" class="registerinput " modifier="underbar" type="text" placeholder="User Name"  required=""></ons-input>
+<span class="loginError" style="display:none;"></span>
+</p>
 
-<p><ons-input  name="userEmail"class="registerinput " modifier="underbar" type="text" placeholder="User Email" required ></ons-input></p>
+<p>
+  <ons-input id ="userID" class="registerinput " modifier="underbar" type="text" placeholder="User ID" required></ons-input>
 
-<p><ons-input  name="userDate" class="registerinput " modifier="underbar" type="date" placeholder="User Birth Date" ></ons-input></p>
+ <span class="loginError" style="display:none;"></span>
 
-<p><ons-input  name="userPassword" class="registerinput" modifier="underbar" type="text" placeholder="User Password"  maxlength ="8"></ons-input></p>
+</p>
 
-<p><ons-input  name="userConfirmPassword" class="registerinput" modifier="underbar" type="text" placeholder="User ConfirmPassword" maxlength ="8"></ons-input></p>
+<p><ons-input  name="userMobile" class="registerinput " modifier="underbar" type="text" placeholder="User Mobile Number" required> </ons-input>
+ <span class="loginError" style="display:none;"></span></p>
+
+<p><ons-input  name="userEmail"class="registerinput " modifier="underbar" type="text" placeholder="User Email" required ></ons-input>
+ <span class="loginError" style="display:none;"></span></p>
+
+<p><ons-input  name="userDate" class="registerinput " modifier="underbar" type="date" placeholder="User Birth Date" ></ons-input> <span class="loginError" style="display:none;"></span></p>
+
+<p><ons-input  name="userPassword" class="registerinput" modifier="underbar" type="text" placeholder="User Password"  maxlength ="8"></ons-input> <span class="loginError" style="display:none;"></span></p>
+
+<p><ons-input  name="userConfirmPassword" class="registerinput" modifier="underbar" type="text" placeholder="User ConfirmPassword" maxlength ="8"></ons-input> <span class="loginError" style="display:none;"></span></p>
 
 
  <p>
