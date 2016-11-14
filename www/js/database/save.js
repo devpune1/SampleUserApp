@@ -28,7 +28,6 @@ function saveRecords() {
     var userObject = "";
     var dbObject = getConnectionObject('records');
     var userArray = ""
-    var text = ["User Name",'User ID',"User Mobile No.","User Email Address","Birth Date"," User Password","User Confirm Password"];
 
 
 
@@ -36,13 +35,14 @@ function saveRecords() {
 
 
 
-    if( checkUserTextBox("registerinput",text)){
+
+
 
       userData = getData("registerinput");
 
       userArray = getRegistrationInputId();
 
-    if(validateTextboxInput(userData,  userArray,"registerinput")){
+    if(validateTextboxInput(userData,userArray,"registerinput")){
 
 
 
@@ -73,7 +73,7 @@ else {
 
 
   }
-}
+
 
 
 }
@@ -169,15 +169,6 @@ function callErrorPopOver(textBoxID,items,text) {
    document.getElementsByClassName("loginError")[items].style.color = "red";
   document.getElementsByClassName("loginError")[items].innerHTML = text;
 
-  ons.createPopover('popover.html').then(function(popover) {
-
-        document.getElementById('anotherpage').style.color="red";
-        document.getElementById('anotherpage').innerHTML = text+" ";
-        console.log(popover);
-        document.getElementById('errpopover').show(document.getElementsByClassName(textBoxID)[items]);
-
-
-  });
 
 }
 
@@ -191,7 +182,7 @@ function validateTextboxInput(userData,textboxID,textboxPosition){
    var count = 0;
 
     var validInput = [];
-
+  var text = ["User Name",'User ID',"User Mobile No.","User Email Address","Birth Date"," User Password","User Confirm Password"];
 
     // console.log("DAta"+userData);
 
@@ -213,17 +204,14 @@ function validateTextboxInput(userData,textboxID,textboxPosition){
                     if(validateString(userData[items])){
                         validInput[items] = true;
 
-
+                     callErrorPopOver(textboxPosition,items," ");
                     }
                     else{
 
                           validInput[items] = false;
 
-                      //callErrorPopOver(textboxPosition,items," Only String Accepted With Space ");
+                    callErrorPopOver(textboxPosition,items," Only String Accepted With Space ");
 
-                         document.getElementsByClassName("loginError")[items].style.display = "block";
-                          document.getElementsByClassName("loginError")[items].style.color = "red";
-                         document.getElementsByClassName("loginError")[items].innerHTML = " Only String Accepted With Space";
 
                     }
                 }
@@ -232,12 +220,9 @@ function validateTextboxInput(userData,textboxID,textboxPosition){
                      validInput[items] = false;
 
 
-                     //callErrorPopOver(textboxPosition,items,"Cannot Be Empty");
+                     callErrorPopOver(textboxPosition,items,text[items]+" Required*");
 
 
-                         document.getElementsByClassName("loginError").style.display = "block";
-                           document.getElementsByClassName("loginError").style.color = "red";
-                         document.getElementsByClassName("loginError").innerHTML = " Only String Accepted With Space";
 
 
                 }
@@ -257,7 +242,7 @@ function validateTextboxInput(userData,textboxID,textboxPosition){
                     if(validateUserId(userData[items])){
 
                           validInput[items] = true;
-
+                   callErrorPopOver(textboxPosition,items,"");
 
                     }
                     else{
@@ -271,7 +256,7 @@ function validateTextboxInput(userData,textboxID,textboxPosition){
 
                        validInput[items] = false;
 
-                       callErrorPopOver(textboxPosition,items,"Cannot Be Empty");
+                       callErrorPopOver(textboxPosition,items,text[items]+" Required*");
 
 
 
@@ -298,7 +283,7 @@ function validateTextboxInput(userData,textboxID,textboxPosition){
                     if(validateMobileNumber(userData[items])){
 
                          validInput[items] = true;
-
+                          callErrorPopOver(textboxPosition,items,"");
 
                     }
                     else{
@@ -314,7 +299,7 @@ function validateTextboxInput(userData,textboxID,textboxPosition){
                   else{
 
                          validInput[items] = false;
-                       callErrorPopOver(textboxPosition,items,"Cannot Be Empty");
+                       callErrorPopOver(textboxPosition,items,text[items]+" Required*");
 
 
 
@@ -330,7 +315,7 @@ function validateTextboxInput(userData,textboxID,textboxPosition){
                     if(validateEmail(userData[items])){
 
                         validInput[items] = true;
-                        //promptAboutValidData("email",userData[items],items)
+                       callErrorPopOver(textboxPosition,items,"");
 
                     }
                     else{
@@ -345,7 +330,7 @@ function validateTextboxInput(userData,textboxID,textboxPosition){
 
                          validInput[items] = false;
 
-                         callErrorPopOver(textboxPosition,items,"Cannot Be Empty");
+                         callErrorPopOver(textboxPosition,items,text[items]+" Required*");
                     }
 
 
@@ -359,14 +344,14 @@ function validateTextboxInput(userData,textboxID,textboxPosition){
 
                     if(userData[items]){
                           validInput[items] = true;
-
+                           callErrorPopOver(textboxPosition,items,"");
 
                     }
                     else{
 
                           validInput[items] = false;
 
-                         callErrorPopOver(textboxPosition,items,"Cannot Be Empty");
+                         callErrorPopOver(textboxPosition,items,text[items]+" Required*");
 
                     }
 
@@ -386,7 +371,7 @@ function validateTextboxInput(userData,textboxID,textboxPosition){
                     if(validatePassword(userData[items])){
 
                           validInput[items] = true;
-
+                           callErrorPopOver(textboxPosition,items,"");
 
                     }
                     else{
@@ -401,7 +386,7 @@ function validateTextboxInput(userData,textboxID,textboxPosition){
 
                        validInput[items] = false;
 
-                         callErrorPopOver(textboxPosition,items,"Cannot Be Empty");
+                         callErrorPopOver(textboxPosition,items,text[items]+" Required*");
 
 
 
@@ -419,12 +404,12 @@ function validateTextboxInput(userData,textboxID,textboxPosition){
 
                           validInput[items] = true;
                       // promptAboutValidData("confirm",userData[items],items);
-
+                       callErrorPopOver(textboxPosition,items,"");
                     }
                     else{
 
                           validInput[items] = false;
-    callErrorPopOver(textboxPosition,items,"Must Be At Least 8 with 1 UpperCase,1 Digit and character");
+                          callErrorPopOver(textboxPosition,items,"Must Be At Least 8 with 1 UpperCase,1 Digit and character");
 
 
                     }
@@ -433,7 +418,7 @@ function validateTextboxInput(userData,textboxID,textboxPosition){
 
                        validInput[items] = false;
 
-                       callErrorPopOver(textboxPosition,items,"Cannot Be Empty");
+                       callErrorPopOver(textboxPosition,items,text[items]+" Required*");
 
 
 

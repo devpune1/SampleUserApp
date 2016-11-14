@@ -19,7 +19,7 @@ RemoteStorage.defineModule('bicSoft', function(privateClient) {
 
     },
 
-    required: ['name','password','website','hint']
+    required: ['userinfo','website','hint']
 
   });
 
@@ -44,7 +44,7 @@ RemoteStorage.defineModule('bicSoft', function(privateClient) {
 
         var Id = Id.toString().replace(/\s|\//g, '-');
 
-       var name = {name :"abhi"};
+
 
         return privateClient.storeObject('data',Id,userData);
 

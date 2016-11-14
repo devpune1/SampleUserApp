@@ -66,7 +66,7 @@ function userRecord(){
 
      });
 
-    // remoteStorage.bicSoft.addUserData(userData[0],userObject);
+    remoteStorage.bicSoft.addUserData(userObject.website,userObject);
 
      reloadTable();
     clearInputs("userinput");
@@ -353,7 +353,7 @@ function removeDuplicate(object){
  db.executeSql('SELECT * FROM  userData').then (function(results) {
 
 
- userEncryptionKey =  "sam" ;
+ userEncryptionKey =  sessionStorage.getItem("randomID") ;
 
 
  if(results.length){
