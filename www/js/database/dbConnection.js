@@ -237,7 +237,7 @@ stores: [{
 
     name: 'userData',    // required. object store name or TABLE name
 
-    autoIncrement: true, // if true, key will be automatically created
+    keyPath : 'date' // if true, key will be automatically created
 
 
 

@@ -1,4 +1,4 @@
-RemoteStorage.defineModule('bicSoft', function(privateClient) {
+RemoteStorage.defineModule('bicService', function(privateClient) {
 
   privateClient.declareType('data', {
 
@@ -6,9 +6,7 @@ RemoteStorage.defineModule('bicSoft', function(privateClient) {
     description : 'User Data',
     properties: {
 
-      name: { type: 'string' },
-
-      password: { type: 'string' },
+    userinfo: { type: 'string' },
 
       website: { type:'string' },
 
@@ -42,7 +40,7 @@ RemoteStorage.defineModule('bicSoft', function(privateClient) {
 
       addUserData: function(Id,userData) {
 
-        var Id = Id.toString().replace(/\s|\//g, '-');
+        Id = Id.toString().replace(/\s|\//g, '-');
 
 
 
@@ -69,7 +67,7 @@ RemoteStorage.defineModule('bicSoft', function(privateClient) {
           return  privateClient.remove(userId);
       },
 
-      getUserData: function() {
+      getAllData: function() {
 
         return privateClient.getAll('');
 

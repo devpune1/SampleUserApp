@@ -6,20 +6,20 @@ function load(){
 RemoteStorage.config.changeEvents.window = false;
 
 // Claim read/write access for the /myfavoritedrinks category
-remoteStorage.access.claim('bicSoft','rw');
+remoteStorage.access.claim('bicService','rw');
 
 // Display the RS connect widget
 remoteStorage.displayWidget();
 
-remoteStorage.bicSoft.init();
+remoteStorage.bicService.init();
 
-remoteStorage.bicSoft.getUserData(function(transactions){
+remoteStorage.bicService.getAllData().then(function(transactions){
 
 for(var id in transactions){
 
 
 
-conseole.log("here",id)
+     //clearRemoteStorage(transactions[id].date);
     removeDuplicate(transactions[id]);
 
 
@@ -35,9 +35,9 @@ conseole.log("here",id)
 
 function removeDuplicate(object){
 
-   console.log(object);
+
     var numberOfItem = null;
-  var userData = {};
+  var userDataObject = {};
   var flag = false;
   var userEncryptionKey = null;
   var count = 0;
@@ -47,7 +47,9 @@ function removeDuplicate(object){
 
   var dataSource = [];
    var userArray = getInputId();
- var db =  getDatabaseObject("records");
+
+
+ var db =  getConnectionObject("records");
 
 
  db.executeSql('SELECT * FROM  userData').then (function(results) {
@@ -64,14 +66,13 @@ function removeDuplicate(object){
 
         for(numberOfItem = 0 ; numberOfItem < results.length ; numberOfItem++) {
 
-               //  console.log( "obj"+object.userName);
+                console.log(object);
 
 
-                  userData  = decryptedData(results[numberOfItem],userEncryptionKey,userArray);
+                  userDataObject  = results[numberOfItem];
 
-                   console.log( decryptedData(object.userName, userEncryptionKey,userArray) );
 
-                    if(userData.website!== object.website){
+                    if(generateHashKey(userDataObject.userinfo) !== generateHashKey(object.userinfo)){
 
                              count = count + 1;
 
@@ -94,10 +95,10 @@ function removeDuplicate(object){
            if(count){
                 console.log("asdasd")
 
-                dbObject.put('userData',userObject).done(function(){
+                  db.put('userData',userDataObject).done(function(){
 
+                   });
 
-                });
 
            }
 
@@ -107,9 +108,10 @@ function removeDuplicate(object){
  }
  else{
 
+console.log("asdasd")
 
-   dbObject.put('userData',userObject).done(function(){
-     
+  db.put('userData',object).done(function(){
+
    });
 
 
@@ -131,5 +133,12 @@ function removeDuplicate(object){
 
 
 
+
+    }
+
+
+    function clearRemoteStorage(timeStamp){
+
+        remoteStorage.bicService.removeUserData(timeStamp);
 
     }

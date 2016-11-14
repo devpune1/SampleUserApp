@@ -30,7 +30,7 @@ function getUserData(className){
 
 function getInputId(){
 
-var userID = ["name","password","website","hint"]
+var userID = ["name","password","website","hint","date"]
 
 return userID;
 }
@@ -44,8 +44,9 @@ function userRecord(){
    var userKey ="";
     var userArray = "";
      var decrypted = "";
-
+var dataBaseName =  sessionStorage.getItem("userDatabaseName");
     userData = getUserData("userinput");
+    userData.push( new Date().getTime());
 
     userKey = sessionStorage.getItem('randomID');
 
@@ -58,15 +59,14 @@ function userRecord(){
 
    userObject = createSensitiveEncryptedObject(userObject,userArray,userKey);
 
-   console.log( JSON.parse( sjcl.decrypt(userKey,userObject.userinfo) ) );
-  //dbObject.clear('userData');
+
 
      dbObject.put('userData',userObject).done(function(){
        alert("done");
 
      });
 
-    remoteStorage.bicSoft.addUserData(userObject.website,userObject);
+    remoteStorage.bicService.addUserData(userObject.date,userObject);
 
      reloadTable();
     clearInputs("userinput");
@@ -262,6 +262,7 @@ function displaySortedData(dataSource){
                         {title: 'Password' ,  className: "center",},
                         { title: 'Website',  className: "center", },
                         {title: 'Hint',className: "center",},
+                          {title: 'Date',className: "center",},
                           {title : 'Action',
                           default :-1,
                         className: "center",
@@ -317,9 +318,13 @@ function getArrayOfData(userData,userProperty){
 
 
             console.log(userData[userProperty[items]])
+if(userProperty[items] == 'date'){
 
+    dataItem [items] =  toDate(userData[userProperty[items]]);
+}
+else{
         dataItem [items] = userData[userProperty[items]];
-
+}
 
         }
 
@@ -331,109 +336,14 @@ function getArrayOfData(userData,userProperty){
 
 }
 
+function toDate(userTimeStamp){
 
+var userDate = new Date(userTimeStamp);
 
-function removeDuplicate(object){
+var formatted_date =userDate.getDate() + "/" + (userDate.getMonth()  + 1) + "/" + userDate.getFullYear()
 
-   console.log(object);
-    var numberOfItem = null;
-  var userData = {};
-  var flag = false;
-  var userEncryptionKey = null;
-  var count = 0;
-  var countArray = [] ;
-  var userName = [];
-  var dataItem = [];
-
-  var dataSource = [];
-   var userArray = getInputId();
- var db =  getDatabaseObject("records");
-
-
- db.executeSql('SELECT * FROM  userData').then (function(results) {
-
-
- userEncryptionKey =  sessionStorage.getItem("randomID") ;
-
-
- if(results.length){
-
-     // createTableHeader();
-
-
-
-        for(numberOfItem = 0 ; numberOfItem < results.length ; numberOfItem++) {
-
-               //  console.log( "obj"+object.userName);
-
-
-                  userData  = decryptedData(results[numberOfItem],userEncryptionKey,userArray);
-
-                   console.log( decryptedData(object.userName, userEncryptionKey,userArray) );
-
-                    if(userData.userName !== decryptedData(object.userName, userEncryptionKey,userArray)){
-
-                             count = count + 1;
-
-
-                    }
-                    else{
-
-
-                        count = 0;
-
-                        break;
-
-                    }
-
-
-
-
-             }
-
-           if(count){
-                console.log("asdasd")
-
-               var userData =  getUserObject(object.userName,object.userAddress,object.userNumber,object.userEmail, userEncryptionKey);
-           console.log(userData)
-           addData(userData);
-
-           }
-
-
-
-
- }
- else{
-
-
-        var userData = getUserObject(object.userName,object.userAddress,object.userNumber,object.userEmail, userEncryptionKey);
-
-           addData(userData);
-
-
-
- }
-
-
-
-
-
-
-
-}, function(e) {
-
-  throw e;
-
-
-});
-
-
-
-
-    }
-
-
+  return formatted_date;
+}
 
 
 function deleteData( userName,userPassword,userWebsite,userHint,userKey) {
@@ -477,7 +387,7 @@ db.keys('userData').done(function(keys) {
                     if(flag){
 
 
-                         //remoteStorage.bicSoft.removeUserData(userName);
+                         //remoteStorage.bicS.removeUserData(userName);
                        db.remove('userData',keys[numberOfItems]);
                        reloadTable();
 
