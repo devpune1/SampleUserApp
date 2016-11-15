@@ -59,7 +59,7 @@
 
 
 
-  <body onload="load()">
+  <body >
 
   <ons-navigator id ="myNavigator" page= "login.html"> </ons-navigator>
 
@@ -101,6 +101,11 @@
 
 </ons-popover>
     -->
+    <ons-modal id="modal">
+          <ons-icon icon="ion-load-c" spin="true"></ons-icon>
+          <br><br>
+          Please wait.<br>Loading...
+        </ons-modal>
 
    <ons-template id="popover.html" >
   <ons-popover direction="down"modifier="material"  id="popover" style="  text-align: center; color:red" cancelable>
@@ -113,7 +118,6 @@
   </ons-page>
 
 </ons-template>
-
 
 
 

@@ -1,7 +1,6 @@
 
 
-
-
+function defineUserModule(){
 
 
 RemoteStorage.defineModule('bicService', function(privateClient) {
@@ -96,3 +95,4 @@ RemoteStorage.defineModule('bicService', function(privateClient) {
   };
 
 });
+}

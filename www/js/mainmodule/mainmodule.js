@@ -40,7 +40,7 @@ function userRecord(){
 
     var userData ="";
     var userObject = "";
-    var dbObject = getConnectionObject("records");
+    var dbObject = getConnectionObject(sessionStorage.getItem("userDatabaseName"));
    var userKey ="";
     var userArray = "";
      var decrypted = "";
@@ -151,12 +151,12 @@ function reloadTable(){
 
    var userArray = ['userinfo','website','hint','date'];
 
-  var db = getConnectionObject("records");
+  var db = getConnectionObject(sessionStorage.getItem("userDatabaseName"));
 
   var userKey = sessionStorage.getItem('randomID');
 
-   console.log( userKey);
-
+   document.getElementById('usertable').innerHTML ="";
+   createTableHeader();
  db.executeSql('SELECT * FROM userData').then (function(results) {
 
 
@@ -177,8 +177,8 @@ function reloadTable(){
                     if(userData){
 
                             count = count + 1;
-
-                        dataSource.push(getArrayOfData(userData,getInputId()));
+                       createTable(count,userData.name,userData.password,userData.website,userData.hint,userData.date)
+                      ///  dataSource.push(getArrayOfData(userData,getInputId()));
 
 
                     }
@@ -202,7 +202,7 @@ function reloadTable(){
             else{
 
 
-                displaySortedData(dataSource);
+                //displaySortedData(dataSource);
                 dataSource.length=0;
             }
 
@@ -346,131 +346,7 @@ var formatted_date =userDate.getDate() + "/" + (userDate.getMonth()  + 1) + "/" 
 }
 
 
-function deleteData( userName,userPassword,userWebsite,userHint,userKey) {
 
-    var numberOfItems = null;
-   var path = "";
-
-    var propertyNameArr = ["name","password","website","hint"];
-
-    var userData = [userName,userPassword,userWebsite,userHint];
-
-     var db = getConnectionObject("records");
-
-
-    var userDataObject = createDataObject(userData,propertyNameArr);
-
-
-   console.log(userDataObject);
-    var items=0;
-    var flag = null;
-
-
-
-
-
-
-
-db.keys('userData').done(function(keys) {
-
-    db.values('userData').done(function(userData) {
-
-
-
-      for ( numberOfItems= 0; numberOfItems < keys.length; numberOfItems++) {
-
-
-              flag = validateUserData(userDataObject,userData[numberOfItems],"sam",propertyNameArr);
-
-                   console.log(flag)
-
-                    if(flag){
-
-
-                         //remoteStorage.bicS.removeUserData(userName);
-                       db.remove('userData',keys[numberOfItems]);
-                       reloadTable();
-
-                      break;
-
-                    }
-
-
-      }
-
-    })
-
-
-  });
-
-
-
-
-}
-
-
-
-
-function validateUserData(userDataObject,results,userEncryptionKey,userDataProperty){
-
-    var flag = 0;
-
-
-   results = decryptedData(results,userEncryptionKey,userDataProperty);
-
-   userDataObject = decryptedData(userDataObject,userEncryptionKey,userDataProperty);
-
-
-
-    console.log(results);
-
-
-console.log(userDataObject);
-
-    if(userDataObject){
-
-
-
-    for(var items = 0; items <  userDataProperty.length ; items++){
-
-
-
-
-            if(results[userDataProperty[items]] == userDataObject[userDataProperty[items]]){
-
-
-                        flag = 1;
-
-
-
-            }
-            else {
-
-
-
-                flag = 0 ;
-                break ;
-            }
-
-
-
-    }
-
-
-    }
-
-else{
-
-
-    flag = 0;
-
-
-}
-
-    return flag;
-
-
-}
 function  validateSensitiveData(userid){
 
 
@@ -647,7 +523,7 @@ console.log(userData);
 
 function clearDb(){
 
-  var db = getConnectionObject("records");
+  var db = getConnectionObject(sessionStorage.getItem("userDatabaseName"));
   db.clear('userData').done(function() {
 
 
@@ -659,8 +535,250 @@ function clearDb(){
 }
 
 
-function closeApp(){
 
+
+
+function createTable(count,userName,userPassword,userWebsite,userHint,userDate){
+
+    var userRowNumber,userTable,createTable,userRow,userPasswordRow,userWebsiteNameRow,userNameRow,userHintRow,userDateRow,userActionButton,deleteRecord,editRecord;
+     var userKey;
+
+
+
+
+
+
+      deleteRecord = document.createElement('label');
+    deleteRecord.id = 'deletebutton';
+        deleteRecord.value="Delete" ;
+
+
+         userRow = document.createElement('tr');
+
+
+          userTable=document.getElementById('usertable');
+           var createTablebody = document.createElement('tbody');
+          createTable=document.createElement('Table');
+          createTable.id='result';
+
+          userRow=document.createElement('tr');
+
+          deleteRecord = document.createElement('input');
+            deleteRecord.type="button";
+            deleteRecord.id = 'deletebutton';
+            deleteRecord.width = '30';
+             deleteRecord.value = 'Delete';
+
+          editRecord = document.createElement('input');
+            editRecord.type="button";
+          editRecord.id= 'editbutton';
+          // editRecord.value= 'edit';
+        //  editRecord.setAttribute('src', 'images/edit.png');
+
+          deleteRecord.style.background = "edit.png" ;
+
+
+          userRowNumber =document.createElement('td');
+          userNameRow=document.createElement('td');
+          userPasswordRow=document.createElement('td');
+          userWebsiteNameRow=document.createElement('td');
+          userHintRow=document.createElement('td');
+          userDateRow = document.createElement('td');
+
+
+
+          deleteRecord.onclick = function (){
+              console.log(userDate)
+               deleteData(userDate);
+
+
+           }
+
+           editRecord.onclick = function() {
+
+                userKey = getSessionPassword();
+                generateEditForm(userName,userPassword,userWebsite,userHint,userDate,userKey);
+
+              getRecord();
+
+          }
+
+
+
+
+
+
+        console.log(userDate)
+          userRowNumber.appendChild(document.createTextNode(count));
+          userNameRow.appendChild(document.createTextNode(userName));
+          userPasswordRow.appendChild(document.createTextNode(userPassword));
+          userWebsiteNameRow.appendChild(document.createTextNode(userWebsite));
+          userHintRow.appendChild(document.createTextNode(userHint));
+         userDateRow.appendChild(document.createTextNode(toDate(userDate,userDateRow)));
+
+           userRowNumber.width='25px';
+           userNameRow.width='175px';
+           userPasswordRow.width='175px';
+           userWebsiteNameRow.width='175px';
+           userHintRow.width='175px';
+           userDateRow.width='175px';
+
+            userRow.appendChild(userRowNumber);
+            userRow.appendChild(userNameRow);
+            userRow.appendChild(userPasswordRow);
+            userRow.appendChild(userWebsiteNameRow);
+            userRow.appendChild(userHintRow);
+           userRow.appendChild( userDateRow);
+
+
+
+            userRowNumber.width='100px';
+
+            userActionButton = document.createElement('td');
+
+           userActionButton.width ='150px';
+
+           userActionButton.appendChild(deleteRecord);
+
+           ///userActionButton.appendChild(editRecord);
+
+         userRow.appendChild(userActionButton);
+
+
+         createTable.appendChild(userRow);
+         createTablebody.appendChild( createTable);
+
+        userTable.appendChild(createTablebody);
+
+
+
+}
+
+
+
+
+
+function createTableHeader(){
+
+
+    var userRowNumber,userTable,userRow,createTable,userNameRow,userWebsiteRow,userPasswordRow,userHintRow,userDateRow;
+    var userDeleteButton,deleteRecord,userEditButton,editRecord;
+
+
+      userNameRow = document.createElement('th');
+
+         userTable = document.getElementById('usertable');
+          createTable = document.createElement('Table');
+          createTable.id='headertable';
+          createTable.class='tablesorter';
+          createTable.style.borderColor="black";
+
+
+
+          userRow=document.createElement('tr');
+          userDeleteButton = document.createElement('th');
+          userEditButton = document.createElement('th');
+
+          userRowNumber = document.createElement('th');
+          userNameRow = document.createElement('th');
+          userPasswordRow = document.createElement('th');
+          userWebsiteRow = document.createElement('th');
+          userHintRow  = document.createElement('th');
+          userDateRow  = document.createElement('th');
+
+
+
+
+
+          userRowNumber.appendChild(document.createTextNode("No."));
+          userNameRow.appendChild(document.createTextNode("User Name"));
+          userPasswordRow.appendChild(document.createTextNode("User Password"));
+          userWebsiteRow.appendChild(document.createTextNode("User Website"));
+          userHintRow.appendChild(document.createTextNode("User Hint"));
+          userDateRow.appendChild(document.createTextNode("Last Update"));
+
+
+
+           userDeleteButton.appendChild(document.createTextNode("Action"));
+
+           userRowNumber.width='25px';
+           userNameRow.width='175';
+           userPasswordRow.width='175';
+           userWebsiteRow.width='175';
+           userHintRow.width='175';
+           userDateRow.width='175';
+
+           userDeleteButton.width='175px';
+           userEditButton.width='175px';
+
+          userRow.appendChild(userRowNumber);
+           userRow.appendChild(userNameRow);
+           userRow.appendChild(userPasswordRow);
+           userRow.appendChild(userWebsiteRow);
+           userRow.appendChild(userHintRow);
+           userRow.appendChild(userDateRow);
+
+           userRow.appendChild(userDeleteButton);
+
+
+
+
+
+
+
+            createTable.appendChild(userRow);
+
+        userTable.appendChild(createTable);
+
+
+
+}
+
+
+
+
+/*===================================================DELETE USER RECORD=========================================================*/
+
+
+
+function deleteData(objectKey) {
+
+
+
+
+    var flag = null;
+
+              flag = confirm("Do you want to delete");
+
+
+                    if(flag){
+
+
+
+                       remoteStorage.bicService.removeUserData(objectKey);
+
+                      deleteRecord("userData",objectKey);
+
+
+                    }
+
+
+
+
+
+}
+
+
+function deleteRecord(userTable,userId){
+
+     var db =  getConnectionObject(sessionStorage.getItem('userDatabaseName'));
+
+     db.remove(userTable,userId);
+                       reloadTable();
+
+}
+
+function closeApp(){
 
 
 

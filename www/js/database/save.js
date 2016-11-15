@@ -1,3 +1,10 @@
+ons.ready(function() {
+  // Onsen UI is now initialized
+  $( function() {
+      $( "#userDate" ).datepicker();
+    } );
+});
+
 
 function getData(className){
 
@@ -61,9 +68,12 @@ userObject["key"] = generateHashKey(userData[1]+userData[5]);
 
         console.log("entered ");
 
+
      });
 
           clearInputs("registerinput");
+            dbObject.close();
+
     }
 
 else {

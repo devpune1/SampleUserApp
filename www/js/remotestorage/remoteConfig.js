@@ -1,7 +1,8 @@
 // Enable change events for changes in the same browser window
 
-function load(){
+function load(userDatabaseName){
 
+  console.log(userDatabaseName);
 
 RemoteStorage.config.changeEvents.window = false;
 
@@ -20,7 +21,7 @@ for(var id in transactions){
 
 
      //clearRemoteStorage(transactions[id].date);
-    removeDuplicate(transactions[id]);
+    removeDuplicate(transactions[id],userDatabaseName);
 
 
   }
@@ -33,7 +34,7 @@ for(var id in transactions){
 }
 
 
-function removeDuplicate(object){
+function removeDuplicate(object,userDatabaseName){
 
 
     var numberOfItem = null;
@@ -48,8 +49,9 @@ function removeDuplicate(object){
   var dataSource = [];
    var userArray = getInputId();
 
+console.log(userDatabaseName);
 
- var db =  getConnectionObject("records");
+ var db =  getConnectionObject(userDatabaseName);
 
 
  db.executeSql('SELECT * FROM  userData').then (function(results) {
@@ -93,7 +95,7 @@ function removeDuplicate(object){
              }
 
            if(count){
-                console.log("asdasd")
+
 
                   db.put('userData',userDataObject).done(function(){
 
@@ -108,7 +110,7 @@ function removeDuplicate(object){
  }
  else{
 
-console.log("asdasd")
+
 
   db.put('userData',object).done(function(){
 

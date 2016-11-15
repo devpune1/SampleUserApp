@@ -30,6 +30,7 @@
     <p>
 
       <ons-button modifier="normal"  id="save"  onclick = "userRecord()">Save</ons-button>
+        <ons-button modifier="normal"  id="save"  onclick = "reloadTable()">Display</ons-button>
       <ons-button modifier="normal"  id="clear"  onclick = "clearDb()">Clear</ons-button>
      <ons-button modifier="normal" id="close"  onclick = "closeApp()">Close</ons-button></p>
 
@@ -44,6 +45,12 @@
        <tbody>
       </table>
 
+      <ons-modal var="modal">
+      <ons-icon icon="ion-load-c" spin="true"></ons-icon>
+      <br><br>
+      Please wait.<br>Loading...
+    </ons-modal>
+<div id="usertable"  class="table-responsive" >  </div>
    </div>
 
  <ons-template id="popover.html" >

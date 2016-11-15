@@ -10,7 +10,6 @@ document.addEventListener('init', function(event) {
     page.querySelector('#register').onclick = function() {
 
 
-
       document.querySelector('#myNavigator').pushPage('registration.html', {data: {title: 'Register'}});
 
 
@@ -46,6 +45,7 @@ function verifyDetails(){
 
 
  var userData = [] ;
+ var userKey = "" ;
 
 var db = {};
 var numberOfRecords = 0;
@@ -102,22 +102,28 @@ db.executeSql('Select * from record').then(function(records){
 
 
    name = records[items].key;
-   userName = generateHashKey(userName + userPassword);
+   userKey = generateHashKey(userName + userPassword);
 
  console.log(name);
- console.log(userName);
+ console.log(userKey);
 
 if(name.length){
 
 
-       if(validateCredential( userName ,name)){
+       if(validateCredential( userKey ,name)){
 
-
+  document.querySelector('#modal').show();
   sessionStorage.setItem("randomID",generateHashKey(userPassword));
 
-  sessionStorage.setItem("userDatabaseName",generateHashKey(userPassword));
+  sessionStorage.setItem("userDatabaseName",generateHashKey(userName));
+
+  defineUserModule();
+
+  load(generateHashKey(userName));
+
 
        document.querySelector('#myNavigator').pushPage('mainmodule.html', {data: {title: 'Main Application'}});
+
 
               count = count + 1;
 
