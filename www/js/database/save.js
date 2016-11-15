@@ -46,15 +46,20 @@ function saveRecords() {
 
 
 
-    userObject = createUserDataObject(userData,userData[4],userArray);
+    userObject = createUserDataObject(userData,userData[5],userArray);
+
 
 
 if(userData[5] === userData[6]) {
 
+          console.log("entered "+userData[1]);
+          console.log("entered "+userData[5]);
+
+userObject["key"] = generateHashKey(userData[1]+userData[5]);
 
           dbObject.put('record',userObject).done( function() {
 
-          console.log("entered ");
+        console.log("entered ");
 
      });
 

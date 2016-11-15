@@ -1,8 +1,4 @@
-$( function() {
-  
-$("#userDate").datepicker();
 
-} );
 
 document.addEventListener('init', function(event) {
 
@@ -105,25 +101,22 @@ db.executeSql('Select * from record').then(function(records){
 
 
 
-   name = records[items].userId;
+   name = records[items].key;
+   userName = generateHashKey(userName + userPassword);
 
-   console.log(name);
-  name =JSON.parse(name);
-
-   name = name.adata;
-
-
- console.log(name)
-
+ console.log(name);
+ console.log(userName);
 
 if(name.length){
 
 
-       if(validateCredential( userName ,name,userPassword)){
+       if(validateCredential( userName ,name)){
 
 
-            sessionStorage.setItem("randomID",generateHashKey(userPassword));
+  sessionStorage.setItem("randomID",generateHashKey(userPassword));
+
   sessionStorage.setItem("userDatabaseName",generateHashKey(userPassword));
+
        document.querySelector('#myNavigator').pushPage('mainmodule.html', {data: {title: 'Main Application'}});
 
               count = count + 1;
@@ -172,16 +165,7 @@ catch(err) {
 
 
 
-   function validateCredential(userTexBoxName,userName,userKey){
-
-
-
-
-
-
-   userTexBoxName = generateHashKey(userTexBoxName);
-
-   console.log( userTexBoxName);
+   function validateCredential(userTexBoxName,userName){
 
     if(userName === userTexBoxName){
 
