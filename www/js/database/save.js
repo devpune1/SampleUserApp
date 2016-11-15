@@ -71,8 +71,23 @@ userObject["key"] = generateHashKey(userData[1]+userData[5]);
 
      });
 
-          clearInputs("registerinput");
-            dbObject.close();
+clearInputs("registerinput");
+  document.querySelector('#myNavigator').pushPage('mainmodule.html', {data: {title: 'Main Application'}});
+
+
+          sessionStorage.setItem("randomID",generateHashKey(userData[5]));
+
+          sessionStorage.setItem("userDatabaseName",generateHashKey(userData[1]));
+
+          defineUserModule();
+
+          load(generateHashKey(userData[1]));
+
+
+
+
+
+
 
     }
 
