@@ -9,7 +9,8 @@ document.addEventListener('init', function(event) {
 
     page.querySelector('#register').onclick = function() {
 
-
+        $('#userDate').datePicker();
+        
       document.querySelector('#myNavigator').pushPage('registration.html', {data: {title: 'Register'}});
 
 
@@ -118,7 +119,7 @@ if(name.length){
 
 
             sessionStorage.setItem("randomID",generateHashKey(userPassword));
-           sessionStorage.setItem("userDatabaseName",generateHashKey(userName+userPassword));
+  sessionStorage.setItem("userDatabaseName",generateHashKey(userPassword));
        document.querySelector('#myNavigator').pushPage('mainmodule.html', {data: {title: 'Main Application'}});
 
               count = count + 1;

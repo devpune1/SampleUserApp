@@ -1,3 +1,9 @@
+
+
+
+
+
+
 RemoteStorage.defineModule('bicService', function(privateClient) {
 
   privateClient.declareType('data', {
