@@ -1,4 +1,8 @@
+$( function() {
+  
+$("#userDate").datepicker();
 
+} );
 
 document.addEventListener('init', function(event) {
 
@@ -9,9 +13,7 @@ document.addEventListener('init', function(event) {
 
     page.querySelector('#register').onclick = function() {
 
-      $( function() {
-  $( "#userDate" ).datepicker();
-} );
+
 
       document.querySelector('#myNavigator').pushPage('registration.html', {data: {title: 'Register'}});
 

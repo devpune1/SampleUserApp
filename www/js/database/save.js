@@ -1,5 +1,4 @@
 
-
 function getData(className){
 
      var elements = document.getElementsByClassName(className);
