@@ -9,8 +9,10 @@ document.addEventListener('init', function(event) {
 
     page.querySelector('#register').onclick = function() {
 
-        $('#userDate').datePicker();
-        
+      $( function() {
+  $( "#userDate" ).datepicker();
+} );
+
       document.querySelector('#myNavigator').pushPage('registration.html', {data: {title: 'Register'}});
 
 
