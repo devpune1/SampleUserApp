@@ -55,10 +55,12 @@ console.log(userDatabaseName);
  var db =  getConnectionObject(userDatabaseName);
 
 
+if(object !== true){
+
  db.executeSql('SELECT * FROM  userData').then (function(results) {
 
 
-if(object !== true){
+
 
 
  if(results.length  ){
@@ -112,6 +114,7 @@ if(object !== true){
 
   db.put('userData',object).done(function(){
     console.log("entered");
+
    });
 
 
@@ -126,11 +129,9 @@ if(object !== true){
 
 
 });
+}
 
-
-
-
-    }
+}
 
 
     function clearRemoteStorage(){
