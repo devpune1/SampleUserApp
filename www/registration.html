@@ -1,0 +1,56 @@
+ <ons-page id="register">
+
+      <ons-toolbar>
+
+      <div class="left"><ons-back-button>Back</ons-back-button> </div>
+
+
+      <div class="center">Register Page</div>
+
+
+    </ons-toolbar>
+
+<div align="center" top = "200px">
+
+<form id="testingforms" data-parsley-validate="" >
+
+<p><ons-input id="userName" class="registerinput " modifier="underbar" type="text" placeholder="User Name"  required=""></ons-input>
+<span class="loginError" style="display:none;"></span>
+</p>
+
+<p>
+  <ons-input id ="userID" class="registerinput " modifier="underbar" type="text" placeholder="User ID" required></ons-input>
+
+ <span class="loginError" style="display:none;"></span>
+
+</p>
+
+<p><ons-input  id="userMobile" class="registerinput " modifier="underbar" type="text" placeholder="User Mobile Number" required> </ons-input>
+ <span class="loginError" style="display:none;"></span></p>
+
+<p><ons-input  id="userEmail"class="registerinput " modifier="underbar" type="text" placeholder="User Email" required ></ons-input>
+ <span class="loginError" style="display:none;"></span></p>
+
+<p><ons-input  id="userDate" class="registerinput " modifier="underbar" type="date" placeholder="User Birth Date" ></ons-input> <span class="loginError" style="display:none;"></span></p>
+
+<p><ons-input  id="userPassword" class="registerinput" modifier="underbar" type="text" placeholder="User Password"  ></ons-input> <span class="loginError" style="display:none;"></span></p>
+
+<p><ons-input  id="userConfirmPassword" class="registerinput" modifier="underbar" type="text" placeholder="User ConfirmPassword" ></ons-input> <span class="loginError" style="display:none;"></span></p>
+
+
+ <p>
+
+<ons-button type="submit"  modifier="normal"  id="save"  onclick = "saveRecords()">Save</ons-button>
+
+<ons-back-button>Close</ons-back-button></p>
+
+<form>
+</div>
+<ons-template id="popover.html" >
+<ons-popover direction="down"modifier="material"  id="errpopover" style="text-align: center; color:red" cancelable>
+<p id="anotherpage"></p>
+</ons-popover>
+</ons-template>
+
+
+  </ons-page>
